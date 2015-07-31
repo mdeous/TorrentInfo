@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="jumbotron">
+        <h1><img src="{{ url_for('static', filename='img/bittorrent-logo.png') }}" alt="logo"> TorrentInfo</h1>
+        <p class="col-md-offset-2">
+            Upload your .torrent file to get peers information for every included tracker.
+            <br><br>
+            This service simply queries every tracker listed in the torrent for its current peers
+            status (seeders, leechers, complete files) and reports it to you, that's all! Uploaded
+            torrents are never stored, in fact they don't even hit the server's hard drive.
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form enctype="multipart/form-data" action="{{ url_for('info') }}" method="post">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <span class="btn btn-primary btn-file">
+                                Browse <input type="file" name="file">
+                            </span>
+                        </span>
+                        <input type="text" class="form-control" readonly>
+                    </div>
+                    <br>
+                    <div class="input-group col-md-offset-5">
+                        <button class="btn btn-default btn-lg" type="submit">Upload</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock body %}

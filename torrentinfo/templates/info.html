@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block body %}
+    <h2>{{ file_name }}</h2>
+    <table class="table table-bordered table-striped table-condensed">
+        <thead>
+            <tr>
+                <th>Tracker URL</th>
+                <th>Seeders</th>
+                <th>Leechers</th>
+                <th>Complete files</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tracker in trackers_info %}
+                <tr>
+                    <td><strong>{{ tracker }}</strong></td>
+                    <td>{{ trackers_info[tracker]['seeds'] }}</td>
+                    <td>{{ trackers_info[tracker]['leeches'] }}</td>
+                    <td>{{ trackers_info[tracker]['complete'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
