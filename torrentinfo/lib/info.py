@@ -8,7 +8,7 @@ from random import randrange
 from urllib import urlopen
 from urlparse import urlparse
 
-import libtorrent as lt
+from torrentinfo.lib import libtorrent as lt
 
 CONNECTION_ID = 0x41727101980
 ACTION_CONNECT = 0x0
