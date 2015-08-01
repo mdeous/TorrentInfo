@@ -55,7 +55,6 @@ class TorrentInfo(object):
                 # TODO: issue warning here
                 continue
             info[tracker] = tracker_info
-        print info
         return info
 
     def _get_udp_info(self, host, port):

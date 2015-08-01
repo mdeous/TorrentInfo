@@ -1,24 +1,29 @@
 {% extends "base.html" %}
-{% block body %}
-    <h2>{{ file_name }}</h2>
-    <table class="table table-bordered table-striped table-condensed">
-        <thead>
-            <tr>
-                <th>Tracker URL</th>
-                <th>Seeders</th>
-                <th>Leechers</th>
-                <th>Complete files</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for tracker in trackers_info %}
+{% block body -%}
+    <hr>
+    {%- for torrent in torrents_info %}
+        <h3>{{ torrent }}</h3>
+        <table class="table table-bordered table-striped table-condensed">
+            <thead>
                 <tr>
-                    <td><strong>{{ tracker }}</strong></td>
-                    <td>{{ trackers_info[tracker]['seeds'] }}</td>
-                    <td>{{ trackers_info[tracker]['leeches'] }}</td>
-                    <td>{{ trackers_info[tracker]['complete'] }}</td>
+                    <th>Tracker URL</th>
+                    <th>Seeders</th>
+                    <th>Leechers</th>
+                    <th>Complete files</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% endblock %}
+            </thead>
+            <tbody>
+                {%- for tracker in torrents_info[torrent] -%}
+                    {% set info = torrents_info[torrent][tracker] %}
+                    <tr>
+                        <td><strong>{{ tracker }}</strong></td>
+                        <td>{{ info['seeds'] }}</td>
+                        <td>{{ info['leeches'] }}</td>
+                        <td>{{ info['complete'] }}</td>
+                    </tr>
+                {%- endfor -%}
+            </tbody>
+        </table>
+        <hr>
+    {% endfor -%}
+{%- endblock %}
