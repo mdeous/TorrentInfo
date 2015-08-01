@@ -17,7 +17,7 @@ ACTION_ERROR = 0x3
 
 
 class TorrentInfo(object):
-    def __init__(self, torrent_file):
+    def __init__(self, torrent_file, request_timeout=5):
         # parse .torrent file
         if isinstance(torrent_file, file):
             data = lt.bdecode(torrent_file.read())
@@ -40,7 +40,7 @@ class TorrentInfo(object):
 
         # create UDP socket
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self._socket.settimeout(8)
+        self._socket.settimeout(request_timeout)
 
     def get_trackers_info(self):
         info = {}
